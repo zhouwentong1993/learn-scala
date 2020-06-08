@@ -15,6 +15,11 @@ object Demo1 {
     addTow(value)
   }
 
+  def adder(m:Int,n:Int):Int = m + n
+
+  var adder1 = adder(2,_:Int)
+
+  println(adder1(19))
 
 
 
