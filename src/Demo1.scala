@@ -23,7 +23,31 @@ object Demo1 {
     val ints = filter(list, 4)
     println(ints)
     println()
-    println(sqrt(10))
+    // 当求的值过于小时，就会出现误差。当求的值过于大时，程序就会卡死。
+    // 原因：值过小，开根号的值就更小了，很容易就会小于我们设定的 0.001 这个标准
+    // 当值过大时，我们需要经过很多次的比较才会使得开根号之后的值小于 0.001
+    println(sqrt(1e-6))
+
+    // 柯里化
+    def sum(x: Int)(y: Int)(z: Int): Int = x + y + z
+
+    def test = sum(1) _
+
+    println(test)
+
+    val sumResult = sum(1)(2)(19)
+    println(sumResult)
+
+    def first(x: Int) = (y: Int) => (z: Int) => x + y + z
+
+    //    def first = sum(1)
+    //    def second = first(2)
+    //    def third = second(3)
+    //    println(third)
+
+    Array("a", "b", "c").map((x: String) => x * 2)
+
+
   }
 
   // 函数内部定义函数，这样太好了
@@ -36,7 +60,7 @@ object Demo1 {
     process(xs)
   }
 
-  def sqrt(x: Int): Double = {
+  def sqrt(x: Double): Double = {
 
     def abs(x: Double): Double = if (x >= 0) x else -x
 
@@ -44,17 +68,15 @@ object Demo1 {
 
     def average(x: Double, y: Double): Double = (x + y) / 2
 
-    def goodEnough(guess: Double, x: Double): Boolean = abs(square(guess) - x) < 0.001
+    def goodEnough(guess: Double, x: Double): Boolean = abs(square(guess) - x) < guess / 10000
 
     def improve(guess: Double, x: Double): Double = average(guess, x / guess)
 
-        @scala.annotation.tailrec
+    @scala.annotation.tailrec
     def sqrtIter(guess: Double, x: Double): Double = {
-      if (goodEnough(guess, x)) {
-        guess
-      } else {
+      if (goodEnough(guess, x)) guess
+      else
         sqrtIter(improve(guess, x), x)
-      }
     }
 
     sqrtIter(1, x)
