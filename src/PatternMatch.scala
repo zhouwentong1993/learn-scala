@@ -27,12 +27,12 @@ object PatternMatch {
 
     println(factorial(5))
 
-    val movies = <movies>
-      <movie>The Incredibles</movie>
-      <movie>WALL E</movie>
-      <short>Jack Jack Attack</short>
-      <short>Geri's Game</short>
-    </movies>
+//    val movies = <movies>
+//      <movie>The Incredibles</movie>
+//      <movie>WALL E</movie>
+//      <short>Jack Jack Attack</short>
+//      <short>Geri's Game</short>
+//    </movies>
 
   }
 }
