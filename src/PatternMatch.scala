@@ -27,6 +27,14 @@ object PatternMatch {
 
     println(factorial(5))
 
+    println(generalSize("abc"))
+
+    def generalSize(x: Any) = x match {
+      case s:String => s.length
+      case m:Map[_,_] => m.size
+      case _ => -1
+    }
+
 //    val movies = <movies>
 //      <movie>The Incredibles</movie>
 //      <movie>WALL E</movie>

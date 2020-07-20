@@ -1,5 +1,4 @@
 package datastructure
 
 object ListPatternMatch {
-
 }
