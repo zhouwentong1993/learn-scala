@@ -40,7 +40,22 @@ sealed trait List[+A] {
       case Cons(_, xs) => Cons(a, xs)
     }
 
+    @scala.annotation.tailrec
+    def drop[A](list: List[A], n: Int): List[A] = {
+      if (n <= 0) list
+      else list match {
+        case Nil => sys.error("empty list")
+        case Cons(_, xs) => drop(xs, n - 1)
+      }
+    }
 
+
+    // 这也太牛逼了
+    @scala.annotation.tailrec
+    def dropWhile[A](list: List[A], f: A => Boolean): List[A] = list match {
+      case Cons(x, xs) if f(x) => dropWhile(xs, f)
+      case _ => list
+    }
   }
 
 }
